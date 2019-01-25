@@ -6,6 +6,7 @@
 
 
 const Document = use("App/Models/Document");
+const AuthorizationService = use("App/Services/AuthService");
 
 /**
  * Resourceful controller for interacting with documents
@@ -46,12 +47,22 @@ class DocumentController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store ({ request, response, auth }) {
+    // 创建document时先验证
+    const user = await auth.getUser()
+    // 
+    const { author, title, content } = request.all()
     let document = new Document()
-    document.author = request.body.author
-    document.title = request.body.title
-    document.content = request.body.content
-    await document.save()
+    // 填充数据
+    document.fill({
+      title,
+      author,
+      content
+    })
+    // 使用user保存，可以保存关系
+    await user.documents().save(document)
+    // document.save() 不保存关系
+    return document
   }
 
   /**
@@ -106,8 +117,11 @@ class DocumentController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    const user = await auth.getUser()
     let document = await Document.find(params.id);
+    AuthorizationService.verifyAccess(document, user);
     await document.delete();
+    return document
   }
 
   /**

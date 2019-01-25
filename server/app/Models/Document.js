@@ -11,8 +11,8 @@ class Document extends Model {
    *
    * @return {Object}
    */
-  users() {
-    return this.hasMany('App/Models/User')
+  user() {
+    return this.belongsTo('App/Models/User')
   }
 }
 

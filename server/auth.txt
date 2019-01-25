@@ -1,0 +1,20 @@
+{
+    "username": "xingwenju",
+    "email": "email",
+    "password": "password"
+}
+
+{
+    "id": 1,
+    "username": "xingwenju",
+    "email": "email",
+    "password": "$2$10$ZtUslnaE.47WoAJENSlI6udrmOIOLyEqGFz7BSjzoxhaytFNuJuUi",
+    "created_at": "2019-01-25 18:37:22",
+    "updated_at": "2019-01-25 18:37:22"
+}
+
+
+{
+    "type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTU0ODQ1NjAzMH0.OfRfR0h3P03eK_4RxBRUJDll_nhG3inG4PJLa9ulv4A",
+    "refreshToken":null
+}

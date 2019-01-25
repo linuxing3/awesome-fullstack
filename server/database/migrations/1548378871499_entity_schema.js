@@ -7,6 +7,7 @@ class EntitySchema extends Schema {
   up () {
     this.create('entities', (table) => {
       table.increments()
+      table.string("name")
       table.timestamps()
     })
   }

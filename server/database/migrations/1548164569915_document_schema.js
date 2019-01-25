@@ -7,9 +7,11 @@ class DocumentSchema extends Schema {
   up () {
     this.create('documents', (table) => {
       table.increments()
+      table.integer('user_id').unsigned().references('id').inTable('users')
+      // setting up fields
       table.string("title", 80).notNullable();
       table.string("author", 20).notNullable();
-      table.string("content", 254).notNullable();
+      table.string("content", 254)
       table.timestamps()
     })
   }

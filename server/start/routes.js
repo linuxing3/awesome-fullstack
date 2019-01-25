@@ -31,11 +31,12 @@ Route.get('/documents', "DocumentController.index")
 Route.get("/documents/create", "DocumentController.create");
 Route.get("/documents/edit", "DocumentController.edit");
 
-Route.post("/documents", "DocumentController.store");
+Route.post("/documents", "DocumentController.store").middleware("auth");
+
 Route.get("/documents/:id/show", "DocumentController.show");
-Route.post("/documents/:id/update", "DocumentController.update");
-Route.post("/documents/:id/delete", "DocumentController.destroy");
-Route.post("/documents/truncate", "DocumentController.truncate");
+Route.post("/documents/:id/update", "DocumentController.update").middleware("auth");
+Route.post("/documents/:id/delete", "DocumentController.destroy").middleware("auth");
+Route.post("/documents/truncate", "DocumentController.truncate").middleware("auth");
 
 
 /*
@@ -44,10 +45,16 @@ Route.post("/documents/truncate", "DocumentController.truncate");
 |--------------------------------------------------------------------------
 |
 */
-Route.get('/users', "UserController.index")
-Route.get("/users/create", "UserController.create");
 
-Route.post("/users", "UserController.store");
-Route.get("/users/:id/show", "UserController.show");
-Route.post("/users/:id/update", "UserController.update");
-Route.post("/users/:id/delete", "UserController.destroy");
+Route.get('/users', "UserController.index")
+Route.get("/users/create", "UserController.create")
+
+Route.post("/users", "UserController.store")
+
+Route.get("/users/:id/show", "UserController.show").middleware("auth");
+Route.post("/users/:id/update", "UserController.update").middleware("auth");
+Route.post("/users/:id/delete", "UserController.destroy").middleware("auth");
+Route.post("/users/truncate", "UserController.truncate").middleware("auth");
+
+Route.post('/login', "UserController.login")
+Route.post('/register', "UserController.register")
