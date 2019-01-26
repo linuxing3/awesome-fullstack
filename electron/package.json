@@ -1,0 +1,9 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "serve": "..\\client\\node_modules\\electron ."
+  },
+  "license": "MIT"
+}

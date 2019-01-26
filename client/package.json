@@ -2,8 +2,10 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "main": "electron-main",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "electron": "electron .",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "new": "hygen new",
@@ -13,6 +15,7 @@
   "dependencies": {
     "@vuex-orm/core": "^0.29.0",
     "axios": "^0.18.0",
+    "electron": "^4.0.2",
     "fs-extra": "^7.0.1",
     "hygen": "1.6.x",
     "lodash": "*",
@@ -49,6 +52,7 @@
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
+    "normalizr": "^3.3.0",
     "sass-loader": "^7.0.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
