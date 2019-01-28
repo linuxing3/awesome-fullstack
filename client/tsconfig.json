@@ -17,6 +17,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
+      "vue-tsx-support/enable-check",
+      "node",
       "webpack-env",
       "jest"
     ],
@@ -29,10 +31,11 @@
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
     ]
   },
   "include": [
+    "node_modules/vue-tsx-support/enable-check.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",

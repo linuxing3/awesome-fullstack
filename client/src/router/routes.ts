@@ -16,6 +16,6 @@ export const routes: RouteConfig[] = [
     component: loadView('Secret'),
   },
 ];
-function loadView(view: string) {
-  return () =>
-    import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.tsx`)};
+export function loadView(view: string) {
+  return () => import(/* webpackChunkName: "view-[request]" */
+    /* webpackMode: "lazy" */ `@/views/${view}.tsx`);};

@@ -2,13 +2,13 @@ import { VNode } from "vue";
 import { component } from "vue-tsx-support";
 
 import { AppLayout } from "@/layout";
-import MainPage from "@/components/MainPage";
+import UserComponent from "@/components/User/User";
 
 export default component({
   render(): VNode {
     return (
       <AppLayout>
-        <MainPage />
+        <UserComponent />
       </AppLayout>
     )
   }

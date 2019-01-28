@@ -21,9 +21,15 @@ import {
 
 const MainPage = component({
     render(): VNode {
-      return (
-        <div>main</div>
-      )
+      return <VContainer>
+          <h1>Main Page</h1>
+          <VBtn to={{ name: "about" }}>
+            <span class="mr-2">About</span>
+          </VBtn>
+          <VBtn to={{ name: "user" }}>
+            <span class="mr-2">User</span>
+          </VBtn>
+        </VContainer>;
     }
 });
 

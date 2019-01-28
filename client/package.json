@@ -16,9 +16,7 @@
   "dependencies": {
     "@vuex-orm/core": "^0.29.0",
     "axios": "^0.18.0",
-    "electron": "^4.0.2",
     "fs-extra": "^7.0.1",
-    "hygen": "1.6.x",
     "lodash": "*",
     "lodash-id": "^0.14.0",
     "lowdb": "^1.0.0",
@@ -48,6 +46,8 @@
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/eslint-config-typescript": "^3.2.0",
     "@vue/test-utils": "^1.0.0-beta.20",
+    "hygen": "^2.1.1",
+    "electron": "^4.0.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
