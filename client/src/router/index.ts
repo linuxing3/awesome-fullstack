@@ -13,7 +13,7 @@ let requiredRoute = require.context(".", false, /\.ts$/);
 
 requiredRoute.keys().forEach(key => {
   if (key === "./index.ts" || key === "./routes.ts") return;
-  routes.push(requiredRoute(key).default || requiredRoute(key));
+  routes.push(requiredRoute(key));
 });
 
 const router = new Router({

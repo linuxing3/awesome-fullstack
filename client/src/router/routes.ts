@@ -18,4 +18,4 @@ export const routes: RouteConfig[] = [
 ];
 function loadView(view: string) {
   return () =>
-    import(/* webpackChunkName: "view-[request]" */ `@/views/${view}`)};
+    import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.tsx`)};

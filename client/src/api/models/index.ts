@@ -1,13 +1,18 @@
 /**
- * 动态路由
+ * models is object to hold
+ * {
+ *   "user" : [user: UserModule extends VuexModel]
+ * }
  */
-let models =  [];
+import { toLower } from "lodash";
 
-let requireModels = require.context(".", false, /\.ts$/);
+let requiredModule = require.context(".", false, /\.ts$/);
+let models = {};
 
-requireModels.keys().forEach(key => {
+requiredModule.keys().forEach(key => {
   if (key === "./index.ts") return;
-  models.push(requireModels[key].default || requireModels[key]);
-})
+  let moduleName = toLower(key.replace(/(\.\/|\.ts)/g, ""));
+  models[moduleName] = requiredModule(key).default;
+});
 
 export default models;

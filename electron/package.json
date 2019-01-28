@@ -1,9 +1,16 @@
 {
-  "name": "electron",
+  "name": "awesome-fullstack",
+  "productName": "awesome-fullstack",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
   "version": "1.0.0",
-  "main": "index.js",
+  "author": "linuxing3",
   "scripts": {
-    "serve": "..\\client\\node_modules\\electron ."
+    "start": "electron ."
   },
-  "license": "MIT"
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "4.0.0-beta.10"
+  }
 }
