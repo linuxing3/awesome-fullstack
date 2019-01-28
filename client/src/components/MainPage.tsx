@@ -25,6 +25,6 @@ const MainPage = component({
         <div>main</div>
       )
     }
-};
+});
 
 export default MainPage;

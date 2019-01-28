@@ -1,11 +1,9 @@
-const template = `
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
-`
-export default {
-  render() {
-    return template
+import { VNode } from "vue";
+import { component } from "vue-tsx-support";
+
+import MainPage from "@/components/MainPage";
+export default component({
+  render(): VNode {
+    return <MainPage />;
   }
-}
+});

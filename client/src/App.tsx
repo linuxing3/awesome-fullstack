@@ -35,7 +35,7 @@ const App = component({
           </VBtn>
         </VToolbar>
         <VContent>
-          content
+          <router-view></router-view>
         </VContent>
       </VApp>
       )
