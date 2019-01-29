@@ -1,11 +1,7 @@
 import { VNode } from "vue";
 import { component } from "vue-tsx-support";
 
-import {
-  VLayout,
-  VFlex,
-  VBtn,
-} from "vuetify-tsx";
+import { VLayout, VFlex, VBtn } from "vuetify-tsx";
 
 const AboutComponent = component({
   name: "App",
@@ -16,13 +12,13 @@ const AboutComponent = component({
           <h1>关于</h1>
         </VFlex>
         <VFlex md8>
-          <VBtn to={{ name: "home"}} >
+          <VBtn to={{ name: "home" }}>
             <div>主页</div>
           </VBtn>
         </VFlex>
       </VLayout>
     );
-  },
+  }
 });
 
 export default AboutComponent;

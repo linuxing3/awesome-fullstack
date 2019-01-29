@@ -20,7 +20,8 @@ export class NedbForElectron {
   ensureElectronEnv() {
     this.electronApp = process.type === "renderer" ? remote.app : app;
     // add to window/global object
-    (window as any).electronApp = process.type === "renderer" ? remote.app : app;
+    (window as any).electronApp =
+      process.type === "renderer" ? remote.app : app;
     return true;
   }
 
@@ -47,7 +48,10 @@ export class NedbForElectron {
    */
   createPersistence(dbName: string) {
     if (this.dbPath !== undefined) {
-      this.db = new Database({ filename: join(this.dbPath, `${dbName}`), autoload: true });
+      this.db = new Database({
+        filename: join(this.dbPath, `${dbName}`),
+        autoload: true
+      });
     } else {
       this.db = new Database({ filename: `${dbName}`, autoload: true });
     }

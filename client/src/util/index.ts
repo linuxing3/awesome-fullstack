@@ -10,14 +10,26 @@ const stringify = require("csv-stringify");
  */
 export const log = {
   suc: (_: any, ...args: any[]) => {
-    console.log(`%c ${_}`, "color: #86d850;font-size:12px;font-weight:bold;", ...args);
+    console.log(
+      `%c ${_}`,
+      "color: #86d850;font-size:12px;font-weight:bold;",
+      ...args
+    );
   },
   info: (_: any, ...args: any[]) => {
-    console.log(`%c ${_}`, "color: #27a8f2;font-size:12px;font-weight:bold;", ...args);
+    console.log(
+      `%c ${_}`,
+      "color: #27a8f2;font-size:12px;font-weight:bold;",
+      ...args
+    );
   },
   err: (_: any, ...args: any[]) => {
-    console.log(`%c ${_}`, "color: red;font-size:12px;font-weight:bold;", ...args);
-  },
+    console.log(
+      `%c ${_}`,
+      "color: red;font-size:12px;font-weight:bold;",
+      ...args
+    );
+  }
 };
 
 /**
@@ -56,7 +68,9 @@ const getFilesFp = curry(getFilesByExtentionInDir);
  *
  * @sortKey:   用来排序的排序器
  */
-export const baseFilter = (sortKey: string) => (filterKey: string) => (items: any[]): any[] => {
+export const baseFilter = (sortKey: string) => (filterKey: string) => (
+  items: any[]
+): any[] => {
   var filter = filterKey && filterKey.toLowerCase();
   var order = 1;
   var data = items;
@@ -71,7 +85,9 @@ export const baseFilter = (sortKey: string) => (filterKey: string) => (items: an
  * @param {Array} data 数据
  * @param {Number} order 排序方向
  */
-export const lazySorter = (sortKey: string) => (order: number) => (data: any[]) => {
+export const lazySorter = (sortKey: string) => (order: number) => (
+  data: any[]
+) => {
   return data.slice().sort(compareObjectValues(sortKey)(order));
 };
 
@@ -148,10 +164,12 @@ export const limitedObjectKeysToArray = (item: any): any[] => {
 /**
  * 将 CSV 文件分割为头和体
  */
-export const splitCSVHeaderBody = (content: string): { header: string; body: string[] } => {
+export const splitCSVHeaderBody = (
+  content: string
+): { header: string; body: string[] } => {
   return pipe(
     (content: string) => content.split("\n"),
-    (lines: string[]) => ({ header: head(lines), body: tail(lines) }),
+    (lines: string[]) => ({ header: head(lines), body: tail(lines) })
   )(content);
 };
 
@@ -164,7 +182,11 @@ export const splitCSVHeaderBody = (content: string): { header: string; body: str
  * @param reverse 如果反向查找,在json文件中通过键值查找键名
  * @return result 新数组, { "姓名": "xxx"}
  */
-export const translateHeadersLegancy = (data: any[], keysDef: any, reverse?: boolean): any[] => {
+export const translateHeadersLegancy = (
+  data: any[],
+  keysDef: any,
+  reverse?: boolean
+): any[] => {
   let result = [];
   data.forEach(item => {
     let newItem = {};
@@ -194,7 +216,11 @@ export const translateHeadersLegancy = (data: any[], keysDef: any, reverse?: boo
  * import * as keysDef from "@/locales/cn.json"
  * const keysDef = JSON.parse(fs.readFileSync("cn.json").toString())
  */
-export const translateHeaders = ({ data = [], keysDef = {}, reverse = false }): any[] => {
+export const translateHeaders = ({
+  data = [],
+  keysDef = {},
+  reverse = false
+}): any[] => {
   if (reverse) {
     return data;
   } else {
@@ -218,7 +244,10 @@ export const translateHeaders = ({ data = [], keysDef = {}, reverse = false }): 
  * return result;
  * NOTE 实现方法2. reduce methods
  */
-export const translateBody = ({ data = [], onlyKeepStringValue = true }): any[] => {
+export const translateBody = ({
+  data = [],
+  onlyKeepStringValue = true
+}): any[] => {
   if (onlyKeepStringValue) {
     return data.reduce((list, item) => {
       let newItem = mapValues(item, preferValueAsString);
@@ -242,7 +271,11 @@ export const translateBody = ({ data = [], onlyKeepStringValue = true }): any[] 
  *   age: "年龄"
  * })
  */
-export const changeCSVHeader = ({ header = "", keysDef = {}, reverse = false }): string => {
+export const changeCSVHeader = ({
+  header = "",
+  keysDef = {},
+  reverse = false
+}): string => {
   if (reverse) {
     return pipe(
       (header: string) => header.split(","),
@@ -250,7 +283,7 @@ export const changeCSVHeader = ({ header = "", keysDef = {}, reverse = false }):
         fieldName = fieldName.replace(/(\\|\n|'|")/g, "");
         return findKey(keysDef, value => value === fieldName).toString();
       }),
-      (fieldNames: string[]) => fieldNames.join(","),
+      (fieldNames: string[]) => fieldNames.join(",")
     )(header);
   } else {
     return pipe(
@@ -259,7 +292,7 @@ export const changeCSVHeader = ({ header = "", keysDef = {}, reverse = false }):
         fieldName = fieldName.replace(/(\\|\n|'|")/g, "");
         return keysDef[fieldName.toString()];
       }),
-      (fieldNames: string[]) => fieldNames.join(","),
+      (fieldNames: string[]) => fieldNames.join(",")
     )(header);
   }
 };
@@ -271,7 +304,11 @@ export const changeCSVHeader = ({ header = "", keysDef = {}, reverse = false }):
  * @param fieldDefs object with i18n translation
  * @result string
  */
-export const changeHeaderOfCSV = ({ targetFilePath = "", keysDef = {}, reverse = false }) => {
+export const changeHeaderOfCSV = ({
+  targetFilePath = "",
+  keysDef = {},
+  reverse = false
+}) => {
   // 1. 读取文件为字符串
   let content = fs.readFileSync(targetFilePath, "utf8");
   // 2. 分别获取第一行为列标题，其他为数据行
@@ -311,7 +348,7 @@ export const GenerateCSV = ({
   targetFilePath = "",
   keysDef = {},
   needTranslateHeader = true,
-  onlyKeepStringValue = true,
+  onlyKeepStringValue = true
 }) => {
   if (!Array.isArray(data)) {
     data = [data];
@@ -330,7 +367,7 @@ export const GenerateCSV = ({
     {
       delimiter: ",",
       header: true,
-      quoted: false,
+      quoted: false
     },
     (_err: string, output: any) => {
       _err && console.log(_err);
@@ -338,7 +375,7 @@ export const GenerateCSV = ({
       console.log(output);
       fs.writeFileSync(targetFilePath, output, "utf8");
       console.log(`Data written to ${targetFilePath}`);
-    },
+    }
   );
 };
 
@@ -357,7 +394,7 @@ export const ImportCSV = async ({ file = {}, keysDef = {} }): Promise<any> => {
       skipEmptyLines: true,
       complete: function(result: any) {
         resolve(result.data);
-      },
+      }
     });
   });
 };
@@ -383,7 +420,7 @@ export const slugify = (words: string) => {
   return pipe(
     (words: string) => words.split(" "),
     map(word => word.toLowerCase()),
-    (words: string[]) => words.join("-"),
+    (words: string[]) => words.join("-")
   )(words);
 };
 

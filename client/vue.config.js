@@ -8,4 +8,4 @@ module.exports = {
 function changeTarget(config) {
   config.target = "electron-renderer";
   return config;
-};
+}

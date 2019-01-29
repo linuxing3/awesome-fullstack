@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain, net } = require("electron");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -81,3 +81,22 @@ app.on("activate", function() {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+ipcMain.on("adonis-request", options => {
+  /**
+   * options = {
+   *    method: "GET",
+   *    protocol: "https:",
+   *    hostname: "localhost",
+   *    port: "3333",
+   *    path: "/"
+   * }
+   */
+  const request = net.request(options);
+  request.on("response", res => {
+    console.log(`STATUS: ${res.statusCode}`);
+  });
+  request.on("data", chunk => {
+    console.log(`BODY: ${chunk}`);
+    ipcMain.send("adonis-response", chunk);
+  });
+});

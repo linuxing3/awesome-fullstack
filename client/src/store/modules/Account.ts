@@ -1,6 +1,5 @@
 import { make } from "vuex-pathify";
 
-
 const state = {
   name: "account",
   items: [],
@@ -9,26 +8,25 @@ const state = {
   loggedIn: false,
   filter: {
     search: "",
-    sort: "",
+    sort: ""
   },
   token: {
     secret: "daniel",
     simpleToken: "",
     netlifyToken: "",
-    firebaseToken: "",
-  },
+    firebaseToken: ""
+  }
 };
 
 const mutations: any = {
-  ...make.mutations(state),
+  ...make.mutations(state)
 };
 
-const AccountActions = {
-};
+const AccountActions = {};
 
 const actions: any = {
   ...make.actions(state),
-  ...AccountActions,
+  ...AccountActions
 };
 
 const getters: any = { ...make.getters(state) };
@@ -38,5 +36,5 @@ export default {
   state,
   mutations,
   actions,
-  getters,
+  getters
 };

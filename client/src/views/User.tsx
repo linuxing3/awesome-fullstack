@@ -10,6 +10,6 @@ export default component({
       <AppLayout>
         <UserComponent />
       </AppLayout>
-    )
+    );
   }
 });

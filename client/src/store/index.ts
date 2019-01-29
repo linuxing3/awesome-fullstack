@@ -23,5 +23,5 @@ const pool = entities.reduce((entitiesDb, entity) => {
 export default new Vuex.Store({
   state: { pool, entities },
   // modules,
-  plugins,
+  plugins
 });

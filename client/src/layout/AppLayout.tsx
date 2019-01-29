@@ -1,31 +1,20 @@
 import { VNode } from "vue";
 import { component } from "vue-tsx-support";
 
-import {
-  VApp,
-  VSpacer,
-  VBtn,
-  VContent,
-  VToolbar,
-  VToolbarTitle,
-} from "vuetify-tsx";
+import AppToolbar from "@/components/AppToolbar";
+
+import { VApp, VContent } from "vuetify-tsx";
 
 const AppLayout = component({
   name: "AppLayout",
   render(): VNode {
-    return <VApp>
-        <VToolbar app dark color="primary">
-          <VToolbarTitle>
-            <span class="heading">通用管理系统</span>
-          </VToolbarTitle>
-          <VSpacer />
-          <VBtn flat to={{ name: "home" }}>
-            <span class="mr-2">主页</span>
-          </VBtn>
-        </VToolbar>
+    return (
+      <VApp>
+        <AppToolbar />
         <VContent>{this.$slots.default}</VContent>
-      </VApp>;
-  },
+      </VApp>
+    );
+  }
 });
 
 export default AppLayout;

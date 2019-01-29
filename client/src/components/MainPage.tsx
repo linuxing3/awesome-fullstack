@@ -1,16 +1,13 @@
 import { VNode } from "vue";
 import { component } from "vue-tsx-support";
 
-import {
-  VBtn,
-  VLayout,
-} from "vuetify-tsx";
-
+import { VBtn, VLayout } from "vuetify-tsx";
 
 const MainPage = component({
-  name: "MainPage", 
+  name: "MainPage",
   render(): VNode {
-    return <VLayout>
+    return (
+      <VLayout>
         <h1>Main Page</h1>
         <VBtn to={{ name: "about" }}>
           <span class="mr-2">About</span>
@@ -18,8 +15,9 @@ const MainPage = component({
         <VBtn to={{ name: "user" }}>
           <span class="mr-2">User</span>
         </VBtn>
-      </VLayout>;
-    }
+      </VLayout>
+    );
+  }
 });
 
 export default MainPage;

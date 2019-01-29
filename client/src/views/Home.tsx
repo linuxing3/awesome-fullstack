@@ -10,6 +10,6 @@ export default component({
       <AppLayout>
         <MainPage />
       </AppLayout>
-    )
+    );
   }
 });

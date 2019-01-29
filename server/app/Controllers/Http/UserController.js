@@ -30,11 +30,16 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ request, response, view, auth }) {
+  async index({ auth }) {
 
     const user = await auth.getUser()
     console.log(user.id)
     return user.tokens().fetch()
+  }
+
+  async fetch({ auth }) {
+    const users = await User.all();
+    return  users;
   }
 
   /**
@@ -58,12 +63,16 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {
+  async store({ request }) {
     let user = new User()
     user.username =  request.body.username
     user.password =  request.body.password
     user.email =  request.body.email
     await user.save()
+  }
+
+  async register({ request }) {
+    await this.store({ request })
   }
 
   /**

@@ -16,9 +16,11 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+/**
+ * Client Side test
+ */
+
+Route.get('/', "UserController.fetch");
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +48,7 @@ Route.post("/documents/truncate", "DocumentController.truncate").middleware("aut
 |
 */
 
-Route.get('/users', "UserController.index")
+Route.get('/users', "UserController.fetch")
 Route.get("/users/create", "UserController.create")
 
 Route.post("/users", "UserController.store")

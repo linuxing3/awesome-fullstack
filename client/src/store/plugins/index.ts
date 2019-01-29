@@ -4,5 +4,5 @@ export default [
   // pathify plugins stuff
   pathifyPlugin.plugin,
   // orm plugins stuff
-  ormPlugin,
+  ormPlugin
 ];

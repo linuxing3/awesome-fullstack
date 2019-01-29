@@ -17,7 +17,6 @@ const lowdbPlugin = options => {
       NSModel.commit(state => (state.data = stateObjectFromArray(entityArray)));
       // entityArray.map(item => NSModel.insert({data: item}))
     }
-
   };
 };
 

@@ -9,7 +9,6 @@ import { LowdbForElectron } from "@/api/lowdb";
  */
 
 Query.on("afterCreate", function(model: Model) {
-
   const entity = model.$self().entity;
   console.log("Create Hook in " + entity);
   const DB: LowdbForElectron = new LowdbForElectron(entity);
@@ -17,12 +16,10 @@ Query.on("afterCreate", function(model: Model) {
 });
 
 Query.on("beforeDelete", function(model: Model) {
-
-  const { entity } = (this as Query);
+  const { entity } = this as Query;
   console.log("Delete Hook in " + entity);
   const DB: LowdbForElectron = new LowdbForElectron(entity);
   DB.delete(entity, { _id: model._id });
-  
 });
 
 Query.on("afterUpdate", function(model: Model) {

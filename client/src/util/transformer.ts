@@ -1,4 +1,15 @@
-import { keyBy, reduce, map, mapKeys, mapValues, pick, pickBy, get, find, set } from "lodash";
+import {
+  keyBy,
+  reduce,
+  map,
+  mapKeys,
+  mapValues,
+  pick,
+  pickBy,
+  get,
+  find,
+  set
+} from "lodash";
 /**
  * Utility function to create a string array from keys of any object
  *
@@ -32,7 +43,9 @@ export function objectFromClassKeys<T extends object>(o: T): T {
  * Usage:
  * classFromStringArray({name: "xxx"})  -> {name: name}
  */
-export function classFromStringArray<T extends string>(o: Array<T>): { [K in T]: K } {
+export function classFromStringArray<T extends string>(
+  o: Array<T>
+): { [K in T]: K } {
   return o.reduce((res, key) => {
     res[key] = key;
     return res;
@@ -51,7 +64,7 @@ export function classFromStringArray<T extends string>(o: Array<T>): { [K in T]:
  */
 export function selectedDeepClone<T extends object, S extends string>(
   o: T,
-  f: S,
+  f: S
 ): { [K in keyof T]: any } {
   return Object.keys(o).reduce((res, key) => {
     if (typeof o[key] === f) {
@@ -71,7 +84,10 @@ export function selectedDeepClone<T extends object, S extends string>(
  * selectedDeepClone({}, "object") -> {name: {...}}
  * selectedDeepClone({}, "undefined") -> {name: undefined}
  */
-export function selectedDeepMining<T extends object, S extends string>(o: T, f: S): S[] {
+export function selectedDeepMining<T extends object, S extends string>(
+  o: T,
+  f: S
+): S[] {
   return Object.keys(o).reduce((res, key) => {
     if (typeof o[key] !== "object") {
       res.push(key);
@@ -92,7 +108,9 @@ export function selectedDeepMining<T extends object, S extends string>(o: T, f: 
  * stateObjectFromArray([{"_id": "1", "name": "joe"}]) -> {"1": {...}}
  * keyBy([o,...], (o)=> o["_id"])
  */
-export function stateObjectFromArray<T extends any, K extends string>(a: Array<T>): { K: T } {
+export function stateObjectFromArray<T extends any, K extends string>(
+  a: Array<T>
+): { K: T } {
   return a.reduce((res, item) => {
     res[item["_id"]] = item;
     return res;

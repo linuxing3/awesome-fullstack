@@ -7,10 +7,12 @@ import AboutPage from "@/components/AboutPage";
 const AboutComponent = component({
   name: "App",
   render(): VNode {
-    return <DefaultLayout>
+    return (
+      <DefaultLayout>
         <AboutPage />
-      </DefaultLayout>;
-  },
+      </DefaultLayout>
+    );
+  }
 });
 
 export default AboutComponent;
