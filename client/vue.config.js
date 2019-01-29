@@ -1,3 +1,5 @@
+const isElectron = process.env.NODE_ENV === "production" ? true : false ;
+
 module.exports = {
   lintOnSave: true,
   configureWebpack: config => {
@@ -6,6 +8,8 @@ module.exports = {
 };
 
 function changeTarget(config) {
-  config.target = "electron-renderer";
+  if (isElectron) {
+    config.target = "electron-renderer";
+  }
   return config;
 }

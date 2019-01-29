@@ -10980,6 +10980,13 @@ vue-router@^3.0.1, vue-router@^3.0.2:
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.2.tgz#dedc67afe6c4e2bc25682c8b1c2a8c0d7c7e56be"
   integrity sha512-opKtsxjp9eOcFWdp6xLQPLmRGgfM932Tl56U9chYTnoWqKxQ8M20N7AkdEbM5beUh6wICoFGYugAX9vQjyJLFg==
 
+vue-rxjs@^0.0.36:
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/vue-rxjs/-/vue-rxjs-0.0.36.tgz#6e5f0b982fc844e9ec595f92430e3c79fe169afa"
+  integrity sha512-vAo6Dk3zDJT7noQRmXI4/V3ibMhklYY8nQiHZeLmd0N7cYG8UUJh2DB6fnxW6NSUUT4EHPuVVS9x5Wj8DdaVhA==
+  dependencies:
+    clone-deep "^2.0.1"
+
 vue-strict-prop@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/vue-strict-prop/-/vue-strict-prop-0.3.2.tgz#4c0776cec166a2c0568d8ee8b846fcbafb7c10e5"
@@ -11037,6 +11044,17 @@ vuetify@^1.3.0:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.4.3.tgz#dfa187a2bd37427c352bdd194837430a06b45735"
   integrity sha512-BRTETa3rQ016OOkL1Y28vOYPPJFU0TwSr9nwjT/M840bnk0A9znk1mGvdk1W+qb9IbtWJ9RUk2W1+7l9RcKa8A==
+
+vuex-orm-lowdb@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/vuex-orm-lowdb/-/vuex-orm-lowdb-0.3.1.tgz#61c59e63ede36d433162c10b93174b67183e517d"
+  integrity sha512-qME1HJcRdRl+3CIE47AXJn4ERE/WrAEpob/nVA2Is4kvS8clURGnj5QPWp3jGfA+TrF/flgALl7pLZTBvvBQfQ==
+  dependencies:
+    "@babel/preset-env" "^7.0.0"
+    "@vuex-orm/core" "^0.29.0"
+    lodash "^4.17.11"
+    lodash-id "^0.14.0"
+    lowdb "^1.0.0"
 
 vuex-pathify@^1.1.3:
   version "1.1.3"

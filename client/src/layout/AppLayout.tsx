@@ -2,7 +2,7 @@ import { VNode } from "vue";
 import { component } from "vue-tsx-support";
 
 import AppToolbar from "@/components/AppToolbar";
-
+import SideMenu from "@/components/SideMenu";
 import { VApp, VContent } from "vuetify-tsx";
 
 const AppLayout = component({
@@ -11,6 +11,7 @@ const AppLayout = component({
     return (
       <VApp>
         <AppToolbar />
+        <SideMenu />
         <VContent>{this.$slots.default}</VContent>
       </VApp>
     );
