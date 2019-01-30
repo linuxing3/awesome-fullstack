@@ -3,6 +3,7 @@ import { component } from "vue-tsx-support";
 
 import AppToolbar from "@/components/AppToolbar";
 import SideMenu from "@/components/SideMenu";
+import AddButtonComponent from "@/components/AddButton";
 import { VApp, VContent } from "vuetify-tsx";
 
 const AppLayout = component({
@@ -13,6 +14,7 @@ const AppLayout = component({
         <AppToolbar />
         <SideMenu />
         <VContent>{this.$slots.default}</VContent>
+        <AddButtonComponent />
       </VApp>
     );
   }

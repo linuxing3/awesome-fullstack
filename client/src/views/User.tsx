@@ -8,7 +8,9 @@ export default component({
   render(): VNode {
     return (
       <AppLayout>
-        <UserComponent />
+        <UserComponent scopedSlots={{
+          default: p => [<h2>{p.text}</h2>]
+        }}/>
       </AppLayout>
     );
   }

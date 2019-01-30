@@ -12,6 +12,8 @@ import {
   VListTileAction,
   VSubheader,
   VDivider,
+  VAvatar,
+  VIcon,
 } from "vuetify-tsx";
 
 interface ISideMenuData {
@@ -23,7 +25,6 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
   data(): ISideMenuData {
     return {
       items: [
-        { header: "主要功能"},
         {
           title: "单位管理",
           name: "Entity",
@@ -40,6 +41,7 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
           title: "人员管理",
           name: "User",
           group: "User",
+          icon: "fas fa-inbox",
           items: [
             {          
               title: "信息",
@@ -58,8 +60,6 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
       ],
     };
   },
-  computed: {},
-  methods: {},
   render(): VNode {
 
     const { items } = this;
@@ -74,17 +74,13 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
         </VListTile>
     );
 
-    return (
-      <VNavigationDrawer fixed dark app width="260">
-        <VList dense expand dark color="indigo">
+    return <VNavigationDrawer fixed app width="200" clipped={this.$vuetify.breakpoint.lgAndUp} value={this.drawer}>
+        <VAvatar size="196">
+          <VIcon size="128">email</VIcon>
+        </VAvatar>
+        <VList>
           {items.map(item => {
-            return (
-              <VListGroup
-                prependIcon={item.icon}
-                key={item.name}
-                group={item.group}
-                noAction
-              >
+            return <VListGroup prependIcon={item.icon} key={item.name} group={item.group} noAction>
                 {/* generate mainMenu */}
                 <VListTile slot={"activator"} ripple>
                   <VListTileContent>
@@ -92,13 +88,13 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
                   </VListTileContent>
                 </VListTile>
                 {/* generate SubMenu if have */}
-                { item.items !== undefined ? item.items.map(subItem => subMenu(subItem)): <VDivider></VDivider>}
-              </VListGroup>
-            );
+                {item.items !== undefined ? item.items.map(subItem =>
+                    subMenu(subItem),
+                  ) : <VDivider />}
+              </VListGroup>;
           })}
         </VList>
-      </VNavigationDrawer>
-    );
+      </VNavigationDrawer>;
   },
 });
 export default SideMenu;

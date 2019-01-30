@@ -27,7 +27,7 @@ const MainPage = component({
               <VBtn to={{ name: "about" }}>
                 <div>About</div>
               </VBtn>
-              <VBtn to={{ name: "users" }}>
+              <VBtn to={{ name: "user" }}>
                 <div>User</div>
               </VBtn>
             </VCardActions>
