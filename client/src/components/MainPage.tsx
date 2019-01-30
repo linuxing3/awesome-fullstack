@@ -1,5 +1,5 @@
-import { VNode } from "vue";
-import { component } from "vue-tsx-support";
+import { VNode } from "vue"
+import { component } from "vue-tsx-support"
 
 import {
   VCard,
@@ -9,12 +9,13 @@ import {
   VBtn,
   VCardText,
   VCardActions,
-} from "vuetify-tsx";
+} from "vuetify-tsx"
 
 const MainPage = component({
   name: "MainPage",
   render(): VNode {
-    return <VLayout row wrap>
+    return (
+      <VLayout row wrap>
         <VFlex md2 />
         <VFlex md6>
           <VCard>
@@ -32,8 +33,9 @@ const MainPage = component({
             </VCardActions>
           </VCard>
         </VFlex>
-      </VLayout>;
-  }
-});
+      </VLayout>
+    )
+  },
+})
 
-export default MainPage;
+export default MainPage
