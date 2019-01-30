@@ -3,7 +3,19 @@ import { componentFactoryOf, withUnknownProps } from "vue-tsx-support";
 
 // import adonisMixin from "@/mixins/adonisMixin";
 
-import { VDataTable, VBtn, VLayout, VFlex, VCard, VCardTitle, VCardActions, VCardText, VSpacer, VDivider, VDialog } from "vuetify-tsx";
+import {
+  VDataTable,
+  VBtn,
+  VLayout,
+  VFlex,
+  VCard,
+  VCardTitle,
+  VCardActions,
+  VCardText,
+  VSpacer,
+  VDivider,
+  VDialog
+} from "vuetify-tsx";
 
 import UserForm from "./UserForm";
 
@@ -11,17 +23,17 @@ interface Data {
   dialog: boolean;
   model: any;
   modelName: string;
-  mockItems: { name: string, age: string}[];
-  mockHeaders: { name: string, value: string}[];
+  mockItems: { name: string; age: string }[];
+  mockHeaders: { name: string; value: string }[];
 }
 
 interface Events {
-    onOk: void;
-    onError: { code: number, detail: string };
+  onOk: void;
+  onError: { code: number; detail: string };
 }
 
-interface ScopedSlots  {
-    default: { text: string };
+interface ScopedSlots {
+  default: { text: string };
 }
 
 const UserComponent = componentFactoryOf<Events, ScopedSlots>()
@@ -38,30 +50,32 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
         mockItems: [
           {
             name: "xingwenju",
-            age: "40",
+            age: "40"
           },
           {
             name: "wanglulu",
-            age: "40",
-          },
+            age: "40"
+          }
         ],
         mockHeaders: [
           { name: "name", value: "name" },
-          { name: "age", value: "age" },
-        ],
+          { name: "age", value: "age" }
+        ]
       };
     },
     created() {
-      this.$on("TOGGLE_INPUT", ()=> this.dialog = !this.dialog);
+      this.$on("TOGGLE_INPUT", () => (this.dialog = !this.dialog));
       (window as any).UserForm = this;
     },
     render(): VNode {
       let { modelName, mockItems, mockHeaders, dialog } = this;
 
       // left side panel
-      let rightButton = (): VNode => <VBtn flat outline class="white--text" to={{ name: "home" }}>
+      let rightButton = (): VNode => (
+        <VBtn flat outline class="white--text" to={{ name: "home" }}>
           <div>主页</div>
-        </VBtn>;
+        </VBtn>
+      );
 
       // header
       let tableHeader = (headers: any[]): VNode => {
@@ -86,43 +100,52 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
       // Data table
       let tableSlot = (): VNode => {
         // VDataTable
-        return <VDataTable hideActions items={mockItems} headers={mockHeaders}>
-            <VFlex slot={"headers"} scopedSlots={{ props: undefined }} >
+        return (
+          <VDataTable hideActions items={mockItems} headers={mockHeaders}>
+            <VFlex slot={"headers"} scopedSlots={{ props: undefined }}>
               {tableHeader(mockHeaders)}
             </VFlex>
-          </VDataTable>;
+          </VDataTable>
+        );
       };
 
       // Data table
       let userCard = (): VNode => {
-        return <VFlex>{mockItems.map(row => {
-          return <VCard>
-              {Object.keys(row).map((key, index) => (
-                /* start row */
-                <VCardText>
-                  <p>
-                    <VLayout>
-                      <VFlex md4>
-                        <strong>{key}</strong>:
-                      </VFlex>
-                      <VFlex md8>{row[key]}</VFlex>
-                    </VLayout>
-                  </p>
-                </VCardText>
-              ))
-              /* end row */
-              }
-            </VCard>;
-          })}</VFlex>
+        return (
+          <VFlex>
+            {mockItems.map(row => {
+              return (
+                <VCard>
+                  {Object.keys(row).map((key, index) => (
+                    /* start row */
+                    <VCardText>
+                      <p>
+                        <VLayout>
+                          <VFlex md4>
+                            <strong>{key}</strong>:
+                          </VFlex>
+                          <VFlex md8>{row[key]}</VFlex>
+                        </VLayout>
+                      </p>
+                    </VCardText>
+                  ))
+                  /* end row */
+                  }
+                </VCard>
+              );
+            })}
+          </VFlex>
+        );
       };
 
       let slotTitle = (text): VNode => {
         return this.$scopedSlots.default({
-          text,
-        })
-      }
+          text
+        });
+      };
 
-      return <VCard>
+      return (
+        <VCard>
           <VCardTitle class="primary white--text">
             {slotTitle("User component")}
             <VSpacer />
@@ -132,8 +155,9 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
           <VDialog width={500} value={dialog}>
             <UserForm />
           </VDialog>
-        </VCard>;
-    },
+        </VCard>
+      );
+    }
   });
 
 export default UserComponent;

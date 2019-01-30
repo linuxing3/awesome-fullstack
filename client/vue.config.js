@@ -1,4 +1,4 @@
-const isElectron = process.env.NODE_ENV === "production" ? true : false ;
+const isElectron = process.env.NODE_ENV === "production";
 
 module.exports = {
   lintOnSave: true,

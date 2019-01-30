@@ -13,11 +13,11 @@ import {
   VSubheader,
   VDivider,
   VAvatar,
-  VIcon,
+  VIcon
 } from "vuetify-tsx";
 
 interface ISideMenuData {
-  items: any [];
+  items: any[];
 }
 
 const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
@@ -29,13 +29,13 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
           title: "单位管理",
           name: "Entity",
           group: "apps",
-          icon: "fas fa-building",
+          icon: "fas fa-building"
         },
         {
           title: "活动管理",
           name: "Activity",
           group: "apps",
-          icon: "fas fa-calendar",
+          icon: "fas fa-calendar"
         },
         {
           title: "人员管理",
@@ -43,44 +43,56 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
           group: "User",
           icon: "fas fa-inbox",
           items: [
-            {          
+            {
               title: "信息",
               name: "Information",
               group: "User",
               icon: "fas fa-calender"
             },
-            {          
+            {
               title: "考核",
               group: "User",
               name: "Evaluation",
               icon: "fas fa-calender"
-            },
+            }
           ]
-        },
-      ],
+        }
+      ]
     };
   },
   render(): VNode {
-
     const { items } = this;
 
     let subHeader = item => <VSubheader>{item.header}</VSubheader>;
 
     let subMenu = subItem => (
-        <VListTile ripple>
-          <VListTileContent>
-            <VListTileTitle>{subItem.title}</VListTileTitle>
-          </VListTileContent>
-        </VListTile>
+      <VListTile ripple>
+        <VListTileContent>
+          <VListTileTitle>{subItem.title}</VListTileTitle>
+        </VListTileContent>
+      </VListTile>
     );
 
-    return <VNavigationDrawer fixed app width="200" clipped={this.$vuetify.breakpoint.lgAndUp} value={this.drawer}>
+    return (
+      <VNavigationDrawer
+        fixed
+        app
+        width="200"
+        clipped={this.$vuetify.breakpoint.lgAndUp}
+        value={this.drawer}
+      >
         <VAvatar size="196">
           <VIcon size="128">email</VIcon>
         </VAvatar>
         <VList>
           {items.map(item => {
-            return <VListGroup prependIcon={item.icon} key={item.name} group={item.group} noAction>
+            return (
+              <VListGroup
+                prependIcon={item.icon}
+                key={item.name}
+                group={item.group}
+                noAction
+              >
                 {/* generate mainMenu */}
                 <VListTile slot={"activator"} ripple>
                   <VListTileContent>
@@ -88,13 +100,17 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
                   </VListTileContent>
                 </VListTile>
                 {/* generate SubMenu if have */}
-                {item.items !== undefined ? item.items.map(subItem =>
-                    subMenu(subItem),
-                  ) : <VDivider />}
-              </VListGroup>;
+                {item.items !== undefined ? (
+                  item.items.map(subItem => subMenu(subItem))
+                ) : (
+                  <VDivider />
+                )}
+              </VListGroup>
+            );
           })}
         </VList>
-      </VNavigationDrawer>;
-  },
+      </VNavigationDrawer>
+    );
+  }
 });
 export default SideMenu;

@@ -11,7 +11,7 @@ export default {
       modelName: "users",
       items: [],
       headers: [],
-      loginData : {
+      loginData: {
         username: "daniel",
         email: "daniel@qq.com",
         password: "20090909"
@@ -25,12 +25,12 @@ export default {
     },
     config(): AxiosRequestConfig {
       let { type, token } = this.token;
-      let authorizationCode = `${type} ${token}`
+      let authorizationCode = `${type} ${token}`;
       return {
         headers: {
-          Authorization: authorizationCode || "",
+          Authorization: authorizationCode || ""
         }
-      }
+      };
     }
   },
   async mounted() {
@@ -52,31 +52,34 @@ export default {
   methods: {
     async checkAdonis() {
       let options = {
-         method: "GET",
-         protocol: "http:",
-         hostname: "localhost",
-         port: "3333",
-         path: "/"
-      }
+        method: "GET",
+        protocol: "http:",
+        hostname: "localhost",
+        port: "3333",
+        path: "/"
+      };
       await ipcRenderer.send("adonis-request", options);
     },
     /**
      * Login and get token
      */
     async login() {
-      await axios.post(`${this.adonisUrl}/login`, this.loginData)
-      .then(result => {
-        this.token = result.data;
-        console.log(this.token.token);
-      })
-      .catch(error => { throw new Error(error) });
+      await axios
+        .post(`${this.adonisUrl}/login`, this.loginData)
+        .then(result => {
+          this.token = result.data;
+          console.log(this.token.token);
+        })
+        .catch(error => {
+          throw new Error(error);
+        });
     },
     /**
      * Login and get token
      */
     async register() {
       await axios
-        .post(`${this.adonisUrl}/users`,  this.loginData)
+        .post(`${this.adonisUrl}/users`, this.loginData)
         .then(result => {
           console.log(result);
         })

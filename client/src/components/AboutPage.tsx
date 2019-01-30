@@ -1,12 +1,21 @@
 import { VNode } from "vue";
 import { component } from "vue-tsx-support";
 
-import { VCard, VCardTitle, VLayout, VFlex, VBtn, VCardText, VCardActions } from "vuetify-tsx";
+import {
+  VCard,
+  VCardTitle,
+  VLayout,
+  VFlex,
+  VBtn,
+  VCardText,
+  VCardActions
+} from "vuetify-tsx";
 
 const AboutComponent = component({
   name: "App",
   render(): VNode {
-    return <VLayout row wrap>
+    return (
+      <VLayout row wrap>
         <VFlex md2 />
         <VFlex md6>
           <VCard>
@@ -21,7 +30,8 @@ const AboutComponent = component({
             </VCardActions>
           </VCard>
         </VFlex>
-      </VLayout>;
+      </VLayout>
+    );
   }
 });
 

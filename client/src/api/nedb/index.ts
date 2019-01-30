@@ -55,7 +55,7 @@ export class NedbForElectron {
     } else {
       this.db = new Database({ filename: `${dbName}`, autoload: true });
     }
-    return this.db === undefined ? false : true;
+    return this.db !== undefined;
   }
 
   /**

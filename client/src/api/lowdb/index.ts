@@ -24,7 +24,7 @@ export class LowdbForElectron {
 
   ensureElectronEnv(): boolean {
     this.electronApp = process.type === "renderer" ? remote.app : app;
-    return this.electronApp !== undefined ? true : false;
+    return this.electronApp !== undefined;
   }
 
   /**
@@ -56,7 +56,7 @@ export class LowdbForElectron {
     }
     this.db = Datastore(this.adapter);
     this.db._.mixin(LodashId);
-    return this.db !== undefined ? true : false;
+    return this.db !== undefined;
   }
 
   /**
