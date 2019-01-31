@@ -6,10 +6,13 @@ import DocumentComponent from "@/components/Document/Document";
 
 const Document = component({
   render(): VNode {
-    return <AppLayout>
-        <DocumentComponent 
-          scopedSlots={{ default: p => [<h2>{p.text}</h2>] }} />
-      </AppLayout>;
+    return (
+      <AppLayout>
+        <DocumentComponent
+          scopedSlots={{ default: p => [<h2>{p.text}</h2>] }}
+        />
+      </AppLayout>
+    );
   }
 });
 

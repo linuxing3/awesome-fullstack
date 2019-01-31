@@ -2,7 +2,7 @@
 const { app, BrowserWindow, ipcMain, net } = require("electron");
 const {
   default: installExtension,
-  VUEJS_DEVTOOLS,
+  VUEJS_DEVTOOLS
 } = require("electron-devtools-installer");
 
 // Keep a global reference of the window object, if you don't, the window will
