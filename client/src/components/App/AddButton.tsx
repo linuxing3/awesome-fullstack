@@ -6,7 +6,7 @@ import { VBtn, VIcon } from "vuetify-tsx";
 const AddButtonComponent = component({
   methods: {
     showInputForm() {
-      (window as any).UserForm.$emit("TOGGLE_INPUT");
+      (window as any).getApp.$emit("APP_DRAWER_TOGGLED");
     }
   },
   render(): VNode {

@@ -42,7 +42,6 @@ const AppSnackBar = componentFactoryOf<Events>()
     },
     methods: {
       handleClick() {
-        // (window as any).getApp.$emit("APP_DRAWER_TOGGLED");
         this.model.show = !this.model.show;
       }
     },

@@ -1,8 +1,14 @@
-const AppEvents = [
+interface AppEvent {
+  name: string;
+  callback: (payload: any) => any;
+  snackbar?: any;
+}
+
+const AppEvents: AppEvent[] = [
   {
     name: "APP_LOGIN",
     callback: (payload: any) => {
-      this.snackbar = {
+      (window as any).getApp.snackbar = {
         show: true,
         color: "green",
         message: "登录成功。"
@@ -13,19 +19,20 @@ const AppEvents = [
   {
     name: "APP_LOGOUT",
     callback: (payload: any) => {
-      this.snackbar = { show: true, color: "green", message: "登出成功。" };
+      (window as any).getApp.snackbar = { show: true, color: "green", message: "登出成功。" };
       return payload;
     }
   },
   {
     name: "APP_DRAWER_TOGGLED",
     callback: (payload: any) => {
-      this.snackbar = {
+      console.log("Toggled!");
+      (window as any).getApp.snackbar = {
         show: true,
         color: "green",
-        message: "切换边栏"
+        message: "登录成功。",
       };
-      return payload;
+      console.log((window as any).getApp.snackbar);
     }
   }
 ];
