@@ -4,36 +4,23 @@ import { componentFactoryOf, ofType } from "vue-tsx-support";
 import {
   VCard,
   VCardText,
-  VAlert,
   VBtn,
-  VLayout,
-  VFlex,
   VIcon,
 } from "vuetify-tsx";
 import { VSnackbar } from "vuetify/lib";
 
-interface Props {
-  color: string;
-  value: boolean;
-};
-
 interface Data {
   model: any;
-  modelName: string;
 }
 
 interface Events {
   onOk: void;
   onError: { code: number; detail: string };
-  handleClick: void;
 }
 
-interface ScopedSlots {
-  default: { text: string };
-}
-
-const AppSnackBar = componentFactoryOf<Events, ScopedSlots>()
-  .create({
+const AppSnackBar = componentFactoryOf<Events>()
+.create({
+    name: "AppSnackBar",
     props: {
       text: String
     },
@@ -49,8 +36,9 @@ const AppSnackBar = componentFactoryOf<Events, ScopedSlots>()
           color: "red",
           show: false
         },
-        modelName: "app",
       };
+    },
+    created() {
     },
     methods: {
       handleClick() {
@@ -60,51 +48,22 @@ const AppSnackBar = componentFactoryOf<Events, ScopedSlots>()
     },
     render(): VNode {
       let { message, color, show } = this.model;
-
-      let appSnackBar = (): VNode => {
-        return (
+      /**
+      |-----------------------------------------------------------------------
+      | render function with jsx/tsx as return value
+      |-----------------------------------------------------------------------
+       */
+      return (
+        <VCard>
+          <VCardText>
+            <VBtn onClick={this.handleClick}>
+              <VIcon>delete</VIcon>
+            </VBtn>
+          </VCardText>
           <VSnackbar color={color} value={show}>
             {message}
             <VBtn color="pink" flat onClick={show = false}></VBtn>
           </VSnackbar>
-        );
-      };
-
-      let appButtons = (): VNode => {
-        return (
-          <VLayout>
-            <VFlex xs12 md4>
-              <VBtn onClick={this.handleClick}>
-                <VIcon>delete</VIcon>
-              </VBtn>
-            </VFlex>
-          </VLayout>
-        );
-      };
-
-
-      /**
-      |-------------------------------------------------------------------------
-      | slot is typesafed
-      |-------------------------------------------------------------------------
-      */
-      let slotTitle = (text): VNode => {
-        return this.$scopedSlots.default({
-          text
-        });
-      };
-
-      /**
-      |-------------------------------------------------------------------------
-      | render function with jsx/tsx as return value
-      |-------------------------------------------------------------------------
-      */
-      return (
-        <VCard>
-          <VCardText>
-            {appButtons()}
-          </VCardText>
-          {appSnackBar()}
         </VCard>
       );
     }

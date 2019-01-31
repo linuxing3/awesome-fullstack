@@ -14,9 +14,18 @@ import {
   VIcon
 } from "vuetify-tsx";
 
+interface Item {
+  title: string;
+  name: string;
+  group: string;
+  icon: string;
+  header?: string;
+  items?: Item[];
+}
+
 interface ISideMenuData {
   drawer: boolean;
-  items: any[];
+  items: Item [];
 }
 
 const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
@@ -27,32 +36,32 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
       items: [
         {
           title: "单位管理",
-          name: "Entity",
+          name: "entity",
           group: "apps",
           icon: "fas fa-building"
         },
         {
           title: "活动管理",
-          name: "Activity",
+          name: "activity",
           group: "apps",
           icon: "fas fa-calendar"
         },
         {
           title: "人员管理",
-          name: "User",
-          group: "User",
+          name: "user",
+          group: "user",
           icon: "fas fa-inbox",
           items: [
             {
               title: "信息",
-              name: "Information",
-              group: "User",
+              name: "user-information",
+              group: "user",
               icon: "fas fa-calender"
             },
             {
               title: "考核",
-              group: "User",
-              name: "Evaluation",
+              group: "user",
+              name: "user-evaluation",
               icon: "fas fa-calender"
             }
           ]
@@ -67,10 +76,10 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
   render(): VNode {
     const { items } = this;
 
-    let subHeader = item => <VSubheader>{item.header}</VSubheader>;
+    let subHeader = (item: Item) => <VSubheader>{item.header}</VSubheader>;
 
-    let subMenu = subItem => (
-      <VListTile ripple>
+    let subMenu = (subItem: Item) => (
+      <VListTile ripple to={{ name: subItem.name }}>
         <VListTileContent>
           <VListTileTitle>{subItem.title}</VListTileTitle>
         </VListTileContent>
@@ -89,7 +98,7 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
           <VIcon size="128">email</VIcon>
         </VAvatar>
         <VList>
-          {items.map(item => {
+          {items.map((item: Item) => {
             return (
               <VListGroup
                 prependIcon={item.icon}
@@ -98,7 +107,7 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
                 noAction
               >
                 {/* generate mainMenu */}
-                <VListTile slot={"activator"} ripple>
+                <VListTile slot={"activator"} ripple to={{ name: item.name}}>
                   <VListTileContent>
                     <VListTileTitle>{item.title}</VListTileTitle>
                   </VListTileContent>
