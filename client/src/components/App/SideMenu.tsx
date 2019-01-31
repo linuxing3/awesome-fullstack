@@ -1,6 +1,5 @@
 import * as tsx from "vue-tsx-support";
 import { VNode } from "vue";
-import { join } from "path";
 
 import {
   VNavigationDrawer,
@@ -9,7 +8,6 @@ import {
   VListTileContent,
   VListTileTitle,
   VListGroup,
-  VListTileAction,
   VSubheader,
   VDivider,
   VAvatar,
@@ -17,6 +15,7 @@ import {
 } from "vuetify-tsx";
 
 interface ISideMenuData {
+  drawer: boolean;
   items: any[];
 }
 
@@ -24,6 +23,7 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
   name: "SideMenu",
   data(): ISideMenuData {
     return {
+      drawer: false,
       items: [
         {
           title: "单位管理",
@@ -59,6 +59,10 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
         }
       ]
     };
+  },
+  created() {
+    this.$on("APP_DRAWER_TOGGLED", () => this.drawer = !this.drawer);
+    (window as any).SideMenu = this;
   },
   render(): VNode {
     const { items } = this;

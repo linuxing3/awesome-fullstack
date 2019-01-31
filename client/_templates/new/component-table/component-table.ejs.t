@@ -98,6 +98,7 @@ export default {
 
     </v-responsive>
     <v-responsive>
+      <<%= modelFormName %> />
     </v-responsive>
   </v-card>
 </template>

@@ -13,7 +13,8 @@ const <%= modelName %> = component({
   render(): VNode {
     return (
       <AppLayout>
-        Include <%= modelName %> Component, add scopedSlots={{ default: p => [<h2>{p.text}</h2>] }} to your component
+        <<%= modelName %>Component
+          scopedSlots={{ default: p => [<h2>{p.text}</h2>] }} %>/>
       </AppLayout>
     );
   }

@@ -52,7 +52,7 @@ const AppToolbar = tsx.componentFactoryOf<IAppToolbarEvents>().create({
   },
   methods: {
     handleDrawerToggle(e) {
-      (window as any).getApp.$emit("APP_DRAWER_TOGGLED");
+      (window as any).SideMenu.$emit("APP_DRAWER_TOGGLED");
     },
     goHomeRoute(e) {
       this.$router.push("/home");

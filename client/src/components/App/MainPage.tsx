@@ -16,8 +16,7 @@ const MainPage = component({
   render(): VNode {
     return (
       <VLayout row wrap>
-        <VFlex md2 />
-        <VFlex md6>
+        <VFlex>
           <VCard>
             <VCardTitle class="primary white--text">
               <h1>主页</h1>

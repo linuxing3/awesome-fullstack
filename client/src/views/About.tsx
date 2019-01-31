@@ -2,7 +2,7 @@ import { VNode } from "vue";
 import { component } from "vue-tsx-support";
 
 import { AppLayout } from "@/layout";
-import AboutPage from "@/components/AboutPage";
+import AboutPage from "@/components/App/AboutPage";
 
 const AboutComponent = component({
   name: "App",

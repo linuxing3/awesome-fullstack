@@ -16,8 +16,7 @@ const AboutComponent = component({
   render(): VNode {
     return (
       <VLayout row wrap>
-        <VFlex md2 />
-        <VFlex md6>
+        <VFlex>
           <VCard>
             <VCardTitle class="primary white--text">
               <h1 class="pa-2">关于</h1>

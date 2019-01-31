@@ -8,9 +8,8 @@ const Document = component({
   render(): VNode {
     return (
       <AppLayout>
-        <DocumentComponent
-          scopedSlots={{ default: p => [<h2>{p.text}</h2>] }}
-        />
+        <DocumentComponent 
+          scopedSlots={{ default: p => [<h2>{p.text}</h2>] }} />
       </AppLayout>
     );
   }

@@ -1,17 +1,21 @@
 import { VNode } from "vue";
-import { componentFactoryOf } from "vue-tsx-support";
+import { componentFactoryOf, ofType } from "vue-tsx-support";
 
 import {
+  VCard,
+  VCardText,
+  VAlert,
   VBtn,
-  VIcon,
   VLayout,
   VFlex,
-  VCard,
-  VCardActions,
-  VCardText,
-  VTextField
+  VIcon,
 } from "vuetify-tsx";
+import { VSnackbar } from "vuetify/lib";
 
+interface Props {
+  color: string;
+  value: boolean;
+};
 
 interface Data {
   model: any;
@@ -21,13 +25,14 @@ interface Data {
 interface Events {
   onOk: void;
   onError: { code: number; detail: string };
+  handleClick: void;
 }
 
 interface ScopedSlots {
   default: { text: string };
 }
 
-const DocumentForm = componentFactoryOf<Events, ScopedSlots>()
+const AppSnackBar = componentFactoryOf<Events, ScopedSlots>()
   .create({
     props: {
       text: String
@@ -40,53 +45,37 @@ const DocumentForm = componentFactoryOf<Events, ScopedSlots>()
     data(): Data {
       return {
         model: {
-          title: "Vue tsx support",
-          author: "xingwenju",
-          content: "Vue tsx will be supported in 3.0. Vola!"
+          message: "Alert",
+          color: "red",
+          show: false
         },
-        modelName: "document",
+        modelName: "app",
       };
     },
     methods: {
       handleClick() {
+        // (window as any).getApp.$emit("APP_DRAWER_TOGGLED");
+        this.model.show = !this.model.show;
       }
     },
     render(): VNode {
-      let { modelName, items } = this;
+      let { message, color, show } = this.model;
 
-      let documentCard = (): VNode => {
-        let { title, author, content } = this.model;
+      let appSnackBar = (): VNode => {
         return (
-          <VLayout>
-            <VFlex xs12 md12>
-              <VTextField label="title" value={title} required />
-            </VFlex>
-            <VFlex xs12 md12>
-              <VTextField label="author" value={author} required />
-            </VFlex>
-            <VFlex xs12 md12>
-              <VTextField label="content" value={content} required />
-            </VFlex>
-          </VLayout>
+          <VSnackbar color={color} value={show}>
+            {message}
+            <VBtn color="pink" flat onClick={show = false}></VBtn>
+          </VSnackbar>
         );
       };
 
-      let documentButtons = (): VNode => {
+      let appButtons = (): VNode => {
         return (
           <VLayout>
             <VFlex xs12 md4>
-              <VBtn onClick={this.saveItem}>
-                <VIcon>add</VIcon>
-              </VBtn>
-            </VFlex>
-            <VFlex xs12 md4>
-              <VBtn onClick={this.deleteItem}>
+              <VBtn onClick={this.handleClick}>
                 <VIcon>delete</VIcon>
-              </VBtn>
-            </VFlex>
-            <VFlex xs12 md4>
-              <VBtn onClick={this.updateItem}>
-                <VIcon>edit</VIcon>
               </VBtn>
             </VFlex>
           </VLayout>
@@ -113,14 +102,12 @@ const DocumentForm = componentFactoryOf<Events, ScopedSlots>()
       return (
         <VCard>
           <VCardText>
-            {documentCard()}
+            {appButtons()}
           </VCardText>
-          <VCardActions>
-            {documentButtons()}
-          </VCardActions>
+          {appSnackBar()}
         </VCard>
       );
     }
   });
 
-export default DocumentForm;
+export default AppSnackBar;

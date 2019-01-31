@@ -3,8 +3,10 @@ to: "src/components/<%= h.capitalize(h.inflection.singularize(model)) %>/<%= h.c
 ---
 <%
   const modelName = h.capitalize(h.inflection.singularize(model))
+  const modelFormComponent = h.capitalize(h.inflection.singularize(model)) + "Form"
 %>import { VNode } from "vue";
 import { componentFactoryOf } from "vue-tsx-support";
+import <%= modelFormComponent %> from "./<%= modelFormComponent %>";
 
 import {
   VLayout,
@@ -18,11 +20,7 @@ import {
 interface Data {
   model: any;
   modelName: string;
-  items: any[
-    {
-      name: "Daniel"
-    }
-  ];
+  items: any[];
 }
 
 interface Events {
@@ -34,7 +32,7 @@ interface ScopedSlots {
   default: { text: string };
 }
 
-const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
+const <%= modelName %> = componentFactoryOf<Events, ScopedSlots>()
   .create({
     props: {
       text: String
@@ -48,7 +46,9 @@ const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
       return {
         model: {},
         modelName: "<%= modelName.toLowerCase() %>",
-        items: []
+        items: [{
+          name: "Daniel"
+        }]
       };
     },
     render(): VNode {
@@ -81,8 +81,6 @@ const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
           </VFlex>
         );
       };
-
-
       /**
       |-------------------------------------------------------------------------
       | slot is typesafed
@@ -94,7 +92,6 @@ const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
           text
         });
       };
-
       /**
       |-------------------------------------------------------------------------
       | render function with jsx/tsx as return value
@@ -108,9 +105,12 @@ const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
           <VCardText class="heading grey--text">
             {<%= modelName.toLowerCase() %>Card()}
           </VCardText>
+          <VCardText class="heading grey--text">
+            <<%= modelFormComponent %> />
+          </VCardText>
         </VCard>
       );
     }
   });
 
-export default <%= modelName %>Component;
+export default <%= modelName %>;

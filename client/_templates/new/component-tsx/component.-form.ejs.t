@@ -32,7 +32,7 @@ interface ScopedSlots {
   default: { text: string };
 }
 
-const <%= modelName %>FormComponent = componentFactoryOf<Events, ScopedSlots>()
+const <%= modelName %>Form = componentFactoryOf<Events, ScopedSlots>()
   .create({
     props: {
       text: String
@@ -58,9 +58,9 @@ const <%= modelName %>FormComponent = componentFactoryOf<Events, ScopedSlots>()
     },
     render(): VNode {
       let { modelName, items } = this;
+      let { username, password, email } = this.model;
 
       let <%= modelName.toLowerCase() %>Card = (): VNode => {
-        let { username, password, email } = this;
         return (
           <VLayout>
             <VFlex xs12 md12>
@@ -128,4 +128,4 @@ const <%= modelName %>FormComponent = componentFactoryOf<Events, ScopedSlots>()
     }
   });
 
-export default <%= modelName %>FormComponent;
+export default <%= modelName %>Form;
