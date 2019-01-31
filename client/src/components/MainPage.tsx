@@ -30,6 +30,9 @@ const MainPage = component({
               <VBtn to={{ name: "user" }}>
                 <div>User</div>
               </VBtn>
+              <VBtn to={{ name: "document" }}>
+                <div>Dcoument</div>
+              </VBtn>
             </VCardActions>
           </VCard>
         </VFlex>

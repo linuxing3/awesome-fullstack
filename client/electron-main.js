@@ -1,5 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, net } = require("electron");
+const {
+  default: installExtension,
+  VUEJS_DEVTOOLS,
+} = require("electron-devtools-installer");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -51,6 +55,12 @@ function createServerWindow() {
     // when you should delete the corresponding element.
     serverWindow = null;
   });
+}
+
+function installDevTools() {
+  installExtension(VUEJS_DEVTOOLS)
+    .then(name => console.log(`Added Extension:  ${name}`))
+    .catch(err => console.log("An error occurred: ", err));
 }
 
 // This method will be called when Electron has finished

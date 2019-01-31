@@ -1,9 +1,4 @@
----
-to: "src/components/<%= h.capitalize(h.inflection.singularize(model)) %>/<%= h.capitalize(h.inflection.singularize(model)) %>.tsx"
----
-<%
-  const modelName = h.capitalize(h.inflection.singularize(model))
-%>import { VNode } from "vue";
+import { VNode } from "vue";
 import { componentFactoryOf } from "vue-tsx-support";
 
 import {
@@ -18,11 +13,7 @@ import {
 interface Data {
   model: any;
   modelName: string;
-  items: any[
-    {
-      name: "Daniel"
-    }
-  ];
+  items: any[];
 }
 
 interface Events {
@@ -34,7 +25,7 @@ interface ScopedSlots {
   default: { text: string };
 }
 
-const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
+const DocumentComponent = componentFactoryOf<Events, ScopedSlots>()
   .create({
     props: {
       text: String
@@ -47,14 +38,16 @@ const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
     data(): Data {
       return {
         model: {},
-        modelName: "<%= modelName.toLowerCase() %>",
-        items: []
+        modelName: "document",
+        items: [{
+          title: "document"
+        }]
       };
     },
     render(): VNode {
       let { modelName, items } = this;
 
-      let <%= modelName.toLowerCase() %>Card = (): VNode => {
+      let documentCard = (): VNode => {
         return (
           <VFlex>
             {items.map(row => {
@@ -103,14 +96,14 @@ const <%= modelName %>Component = componentFactoryOf<Events, ScopedSlots>()
       return (
         <VCard>
           <VCardTitle class="primary white--text">
-            {slotTitle("<%= modelName %> Component")}
+            {slotTitle("Document Component")}
           </VCardTitle>
           <VCardText class="heading grey--text">
-            {<%= modelName.toLowerCase() %>Card()}
+            {documentCard()}
           </VCardText>
         </VCard>
       );
     }
   });
 
-export default <%= modelName %>Component;
+export default DocumentComponent;

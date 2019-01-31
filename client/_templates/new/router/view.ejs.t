@@ -7,14 +7,16 @@ to: src/views/<%= h.capitalize(h.inflection.singularize(model)) %>.tsx
 import { component } from "vue-tsx-support";
 
 import { AppLayout } from "@/layout";
-import <%= modelName =%> from "@/components/<%= modelName %>/<%= modelName %>";
+import <%= modelName %>Component from "@/components/<%= modelName %>/<%= modelName %>";
 
-export default component({
+const <%= modelName %> = component({
   render(): VNode {
     return (
       <AppLayout>
-        Here input you component, like User...
+        Include <%= modelName %> Component, add scopedSlots={{ default: p => [<h2>{p.text}</h2>] }} to your component
       </AppLayout>
-    )
+    );
   }
 });
+
+export default <%= modelName %>;
