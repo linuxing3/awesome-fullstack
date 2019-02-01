@@ -17,9 +17,9 @@ const AppLayout = component({
       snackbar: {
         show: false,
         color: "red",
-        message: "Alert",
+        message: "Alert"
       },
-      modelName: "app",
+      modelName: "app"
     };
   },
   created() {
@@ -42,7 +42,7 @@ const AppLayout = component({
         </VSnackbar>
       </VApp>
     );
-  },
+  }
 });
 
 export default AppLayout;

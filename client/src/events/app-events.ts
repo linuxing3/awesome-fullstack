@@ -19,7 +19,11 @@ const AppEvents: AppEvent[] = [
   {
     name: "APP_LOGOUT",
     callback: (payload: any) => {
-      (window as any).getApp.snackbar = { show: true, color: "green", message: "登出成功。" };
+      (window as any).getApp.snackbar = {
+        show: true,
+        color: "green",
+        message: "登出成功。"
+      };
       return payload;
     }
   },
@@ -30,7 +34,7 @@ const AppEvents: AppEvent[] = [
       (window as any).getApp.snackbar = {
         show: true,
         color: "green",
-        message: "登录成功。",
+        message: "登录成功。"
       };
       console.log((window as any).getApp.snackbar);
     }

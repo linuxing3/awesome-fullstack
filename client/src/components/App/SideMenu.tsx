@@ -25,7 +25,7 @@ interface Item {
 
 interface ISideMenuData {
   drawer: boolean;
-  items: Item [];
+  items: Item[];
 }
 
 const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
@@ -70,7 +70,7 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
     };
   },
   created() {
-    this.$on("APP_DRAWER_TOGGLED", () => this.drawer = !this.drawer);
+    this.$on("APP_DRAWER_TOGGLED", () => (this.drawer = !this.drawer));
     (window as any).SideMenu = this;
   },
   render(): VNode {
@@ -107,7 +107,7 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
                 noAction
               >
                 {/* generate mainMenu */}
-                <VListTile slot={"activator"} ripple to={{ name: item.name}}>
+                <VListTile slot={"activator"} ripple to={{ name: item.name }}>
                   <VListTileContent>
                     <VListTileTitle>{item.title}</VListTileTitle>
                   </VListTileContent>
