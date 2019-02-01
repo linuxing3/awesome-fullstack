@@ -39,7 +39,7 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
   // .mixin(adonisMixin)
   .create({
     props: {
-      text: String
+      text: String,
     },
     data(): Data {
       return {
@@ -49,30 +49,35 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
         mockItems: [
           {
             name: "xingwenju",
-            age: "40"
+            age: "40",
           },
           {
             name: "wanglulu",
-            age: "40"
-          }
+            age: "40",
+          },
         ],
         mockHeaders: [
           { name: "name", value: "name" },
-          { name: "age", value: "age" }
-        ]
+          { name: "age", value: "age" },
+        ],
       };
     },
     created() {
       this.$on("TOGGLE_INPUT", () => (this.dialog = !this.dialog));
       (window as any).UserForm = this;
     },
+    methods: {
+      toggleInput() {
+        this.$emit("TOGGLE_INPUT");
+      },
+    },
     render(): VNode {
       let { modelName, mockItems, mockHeaders, dialog } = this;
 
       // left side panel
       let rightButton = (): VNode => (
-        <VBtn icon to={{ name: "home" }}>
-          <VIcon>refresh</VIcon>
+        <VBtn icon class="white--text" onClick={this.toggleInput}>
+          <VIcon>add</VIcon>
         </VBtn>
       );
 
@@ -139,7 +144,7 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
 
       let slotTitle = (text): VNode => {
         return this.$scopedSlots.default({
-          text
+          text,
         });
       };
 
@@ -156,7 +161,7 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
           </VDialog>
         </VCard>
       );
-    }
+    },
   });
 
 export default UserComponent;
