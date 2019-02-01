@@ -10,10 +10,9 @@ import {
   VFlex,
   VCard,
   VCardTitle,
-  VCardActions,
   VCardText,
   VSpacer,
-  VDivider,
+  VIcon,
   VDialog
 } from "vuetify-tsx";
 
@@ -72,8 +71,8 @@ const UserComponent = componentFactoryOf<Events, ScopedSlots>()
 
       // left side panel
       let rightButton = (): VNode => (
-        <VBtn flat outline class="white--text" to={{ name: "home" }}>
-          <div>主页</div>
+        <VBtn icon to={{ name: "home" }}>
+          <VIcon>refresh</VIcon>
         </VBtn>
       );
 

@@ -19,7 +19,6 @@ const AppLayout = component({
         color: "red",
         message: "Alert"
       },
-      modelName: "app"
     };
   },
   created() {

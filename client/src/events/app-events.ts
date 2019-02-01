@@ -6,6 +6,14 @@ interface AppEvent {
 
 const AppEvents: AppEvent[] = [
   {
+    name: "ADD_MODEL",
+    callback: (payload: any) =>  {
+      console.log("Add model");
+      console.log((window as any).getApp);
+      (window as any).getApp.$router.push({ name: payload});
+    }
+  },
+  {
     name: "APP_LOGIN",
     callback: (payload: any) => {
       (window as any).getApp.snackbar = {

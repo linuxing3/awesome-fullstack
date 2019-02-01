@@ -3,10 +3,15 @@ import { component } from "vue-tsx-support";
 
 import { VBtn, VIcon } from "vuetify-tsx";
 
-const AddButtonComponent = component({
+const AddButton = component({
   methods: {
     showInputForm() {
-      (window as any).getApp.$emit("APP_DRAWER_TOGGLED");
+      (window as any).getApp.$emit("ADD_MODEL", this.modelName);
+    }
+  },
+  computed: {
+    openFormRoute: function() {
+      return `${this.modelName}`;
     }
   },
   render(): VNode {
@@ -26,4 +31,4 @@ const AddButtonComponent = component({
   }
 });
 
-export default AddButtonComponent;
+export default AddButton;

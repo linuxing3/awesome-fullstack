@@ -54,15 +54,15 @@ const DocumentForm = componentFactoryOf<Events, ScopedSlots>().create({
     let documentCard = (): VNode => {
       let { title, author, content } = this.model;
       return (
-        <VLayout>
+        <VLayout row wrap>
           <VFlex xs12 md12>
-            <VTextField label="title" value={title} required />
+            <VTextField label="Title" value={title} required />
           </VFlex>
           <VFlex xs12 md12>
-            <VTextField label="author" value={author} required />
+            <VTextField label="Author" value={author} required />
           </VFlex>
           <VFlex xs12 md12>
-            <VTextField label="content" value={content} required />
+            <VTextField label="Content" value={content} required />
           </VFlex>
         </VLayout>
       );
@@ -70,19 +70,19 @@ const DocumentForm = componentFactoryOf<Events, ScopedSlots>().create({
 
     let documentButtons = (): VNode => {
       return (
-        <VLayout>
-          <VFlex xs12 md4>
-            <VBtn onClick={this.saveItem}>
+        <VLayout row justify-center>
+          <VFlex offset-md8>
+            <VBtn dark class="primary" onClick={this.saveItem}>
               <VIcon>add</VIcon>
             </VBtn>
           </VFlex>
-          <VFlex xs12 md4>
-            <VBtn onClick={this.deleteItem}>
+          <VFlex>
+            <VBtn dark class="danger" onClick={this.deleteItem}>
               <VIcon>delete</VIcon>
             </VBtn>
           </VFlex>
-          <VFlex xs12 md4>
-            <VBtn onClick={this.updateItem}>
+          <VFlex>
+            <VBtn dark class="warning" onClick={this.updateItem}>
               <VIcon>edit</VIcon>
             </VBtn>
           </VFlex>

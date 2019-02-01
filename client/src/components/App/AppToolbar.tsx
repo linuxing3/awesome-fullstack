@@ -29,7 +29,7 @@ const AppToolbar = tsx.componentFactoryOf<IAppToolbarEvents>().create({
       {
         icon: "settings",
         href: "#",
-        title: "个人设置",
+        title: "设置",
         click(e) {
           (window as any).getApp.$emit("APP_ACCOUNT_SETTING");
         }
@@ -61,7 +61,7 @@ const AppToolbar = tsx.componentFactoryOf<IAppToolbarEvents>().create({
   render(): VNode {
     let { items } = this;
     return (
-      <VToolbar app>
+      <VToolbar app dark class="primary">
         <VToolbarSideIcon nativeOn-click={this.handleDrawerToggle} />
         <VTextField
           flat
@@ -93,9 +93,9 @@ const AppToolbar = tsx.componentFactoryOf<IAppToolbarEvents>().create({
           <VAvatar size={30} slot={"activator"}>
             <img src={this.computeAvatar} alt="Avatar Image" />
           </VAvatar>
-          <VList>
+          <VList class="pa-0">
             {items.map(item => (
-              <VListTile ripple nativeOn-click={item.click}>
+              <VListTile ripple to={{ name: "user" }}>
                 <VListTileContent>
                   <VListTileTitle>{item.title}</VListTileTitle>
                 </VListTileContent>

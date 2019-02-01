@@ -1,5 +1,6 @@
 import * as tsx from "vue-tsx-support";
 import { VNode } from "vue";
+import { join } from "path";
 
 import {
   VNavigationDrawer,
@@ -11,7 +12,9 @@ import {
   VSubheader,
   VDivider,
   VAvatar,
-  VIcon
+  VImg,
+  VToolbar,
+  VToolbarTitle
 } from "vuetify-tsx";
 
 interface Item {
@@ -69,6 +72,9 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
       ]
     };
   },
+  computed: {
+    logoUrl: () => join(process.env.BASE_URL, "icon/keep.png")
+  },
   created() {
     this.$on("APP_DRAWER_TOGGLED", () => (this.drawer = !this.drawer));
     (window as any).SideMenu = this;
@@ -88,15 +94,18 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
 
     return (
       <VNavigationDrawer
+        dark={this.$vuetify.dark}
         fixed
         app
-        width="200"
-        clipped={this.$vuetify.breakpoint.lgAndUp}
+        width="260"
         value={this.drawer}
       >
-        <VAvatar size="196">
-          <VIcon size="128">email</VIcon>
-        </VAvatar>
+        <VToolbar color="primary" dark>
+          <img height={48} src={this.logoUrl} />
+          <VToolbarTitle class="ml-0 pl-3">
+            <span class="hidden-sm-and-down">综合管理系统</span>
+          </VToolbarTitle>
+        </VToolbar>
         <VList>
           {items.map((item: Item) => {
             return (
@@ -107,7 +116,11 @@ const SideMenu = tsx.componentFactoryOf<ISideMenuData>().create({
                 noAction
               >
                 {/* generate mainMenu */}
-                <VListTile slot={"activator"} ripple to={{ name: item.name }}>
+                <VListTile
+                  slot={"activator"}
+                  ripple
+                  to={{ name: item.name }}
+                >
                   <VListTileContent>
                     <VListTileTitle>{item.title}</VListTileTitle>
                   </VListTileContent>
